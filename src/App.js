@@ -5,6 +5,7 @@ import { React } from "react";
 import "./App.css";
 import List from "./components/addToList/List";
 import Login from "./components/Login";
+import Shop from "./components/addToList/Shop";
 
 function App() {
   return (

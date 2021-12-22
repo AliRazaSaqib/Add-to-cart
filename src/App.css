@@ -1,7 +1,7 @@
 /** @format */
 .App {
   background: linear-gradient(-135deg, #c850c0, #4158d0);
-  padding: 38px 165px;
+  padding: 90px 165px;
   color: whitesmoke;
 }
 .app-header {
@@ -92,8 +92,8 @@
   border-radius: 6px;
 }
 .items:hover {
-  transform: scale(1.1);
   transition: all 0.5s ease-in-out;
+  transform: rotate(-3deg);
 }
 .items img {
   width: 100%;
@@ -145,7 +145,8 @@ table tbody tr {
 }
 .view-added-items button:hover {
   transition: all 1s ease-in-out;
-  transform: rotate(-10deg);
+  transform: scale(1.1);
+  color: red;
 }
 @media (max-width: 1200px) {
   .App {

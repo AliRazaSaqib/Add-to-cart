@@ -1,11 +1,14 @@
 /** @format */
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "../../App.css";
 import { v4 as uuidv4 } from "uuid";
 
 export default function List() {
-  const [items, setSeletectItems] = useState([
+  const [items, setSeletectItems] = useState([]);
+
+  // list of items
+  const list = [
     {
       id: uuidv4(),
       name: "Shirt",
@@ -24,17 +27,19 @@ export default function List() {
       image: "/jacket.jpg",
       price: 1000,
     },
-  ]);
-  const [selected, setSelected] = useState([]);
-  const handleSelected = (id, data) => {
-    console.log(id);
-    // setSelected([...items, { data }]);
-    setSelected([...selected, { data }]);
+  ];
+
+  // add item to cart
+  const handleSelected = (el) => {
+    setSeletectItems([...items, el]);
+    console.log(el.id);
   };
-  const uniqueItems = [];
-  uniqueItems.push(selected);
-  console.log("Unique Items", uniqueItems);
-  console.log(uniqueItems[0].data.name);
+
+  // remove item from card
+  const handleRemote = (el) => {
+    let del = items.filter((elem) => elem.id != el.id);
+    setSeletectItems(del);
+  };
 
   return (
     <div className="App">
@@ -43,13 +48,13 @@ export default function List() {
       </div>
 
       <div className="add-list-container">
-        {items.map((elem, id) => {
+        {list.map((el) => {
           return (
-            <div key={id} className="d-flex align-items-center items">
-              <div>{elem.name}</div>
-              <img src={elem.image} />
-              <div>Pkr.{elem.price}</div>
-              <button className="mt-3" onClick={() => handleSelected(id, elem)}>
+            <div key={el.id} className="d-flex align-items-center items">
+              <div>{el.name}</div>
+              <img src={el.image} />
+              <div>Pkr.{el.price}</div>
+              <button className="mt-3" onClick={() => handleSelected(el)}>
                 Add to list
               </button>
             </div>
@@ -57,41 +62,30 @@ export default function List() {
         })}
       </div>
 
-      <div className="view-added-items">
-        <table>
-          <thead>
-            <tr>
-              <th>Item Name</th>
-              <th>Price</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {uniqueItems.map((id) => {
-              return (
-                <tr key={id}>
-                  <td>{selected.name}</td>
-                  <td>{selected.price}</td>
+      {items.length > 0 ? (
+        <div className="view-added-items">
+          <table>
+            <thead>
+              <tr>
+                <th>Item Name</th>
+                <th>Price</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((el) => (
+                <tr key={el.id}>
+                  <td>{el.name}</td>
+                  <td>{el.price}</td>
                   <td>
-                    <button>Delete</button>
+                    <button onClick={() => handleRemote(el)}>Delete</button>
                   </td>
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : null}
     </div>
-    // {arr.map(() => {
-    //     return (
-    //       <tr key={uuidv4()}>
-    //         <td>Shirt</td>
-    //         <td>$10</td>
-    //         <td>
-    //           <button>Delete</button>
-    //         </td>
-    //       </tr>
-    //     );
-    //   })}
   );
 }
