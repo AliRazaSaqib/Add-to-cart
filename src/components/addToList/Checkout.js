@@ -1,11 +1,11 @@
 /** @format */
 
-import React from "react";
+import React, { useContext } from "react";
 import "../../App.css";
+import { ListContext } from "./ContextProvider";
 
-export default function Checkout(props) {
-  console.log("props", props.items);
-  let lis = [1, 2, 4, 5, 6, 7, 8, 9, 10];
+export default function Checkout() {
+  const [items, list] = useContext(ListContext);
   return (
     <div className="App">
       <div className="app-header d-flex align-items-center justify-content-center">
@@ -22,18 +22,25 @@ export default function Checkout(props) {
             </tr>
           </thead>
           <tbody>
-            {lis.map(() => {
+            {list.map((el) => {
               return (
-                <tr>
-                  <td>Image</td>
-                  <td>Name</td>
-                  <td>Price</td>
+                <tr key={el.id}>
+                  <td>
+                    <td>
+                      <img
+                        src={el.image}
+                        style={{ height: "260px", width: "260px" }}
+                      />
+                    </td>
+                  </td>
+                  <td>{el.name}</td>
+                  <td>{el.price}</td>
                 </tr>
               );
             })}
           </tbody>
         </table>
-        <div className="show-total">Pkr.5000</div>
+        <div className="show-total">Show Total Amount Here</div>
       </div>
 
       {/* payment section */}
@@ -50,7 +57,7 @@ export default function Checkout(props) {
                   name="pay-method"
                   value="visacard"
                 />
-                 <label for="visa">Visa Card</label>
+                 <label htmlFor="visa">Visa Card</label>
               </div>
               <div>
                 <input
@@ -59,7 +66,7 @@ export default function Checkout(props) {
                   name="pay-method"
                   value="mastercard"
                 />
-                 <label for="master">Master Card</label>
+                 <label htmlFor="master">Master Card</label>
               </div>
               <div>
                 <input
@@ -68,18 +75,18 @@ export default function Checkout(props) {
                   name="pay-method"
                   value="paypal"
                 />
-                 <label for="paypal">Paypal</label>
+                 <label htmlFor="paypal">Paypal</label>
               </div>
               <br />
             </div>
-            <label for="cardHolderName">Credit Card Name</label>
+            <label htmlFor="cardHolderName">Credit Card Name</label>
             <input
               type="text"
               id="cardHolderName"
               placeholder="Card Holder Name"
               className="card-holder-name mt-1"
             />
-            <label for="cardnumber" className="mt-3">
+            <label htmlFor="cardnumber" className="mt-3">
               Credit Card Name
             </label>
             <input
@@ -89,7 +96,7 @@ export default function Checkout(props) {
               className="card-holder-name mt-1"
             />
 
-            <label for="date" className="mt-3">
+            <label htmlFor="date" className="mt-3">
               Expiry Date
             </label>
             <div className="d-flex gap-2">
@@ -125,23 +132,23 @@ export default function Checkout(props) {
       </form>
       {/* Confermation PopUp */}
       <div
-        class="modal fade"
+        className="=modal fade"
         id="successMessage"
         tabindex="-1"
         aria-labelledby="successMessageLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
+        <div className="=modal-dialog">
+          <div className="=modal-content">
+            <div className="=modal-header">
               <button
                 type="button"
-                class="btn-close"
+                className="=btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">Thank you for using our services</div>
+            <div className="=modal-body">Thank you for using our services</div>
           </div>
         </div>
       </div>
