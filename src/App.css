@@ -197,24 +197,25 @@ table tbody tr {
   outline: none;
   font-weight: bold;
   line-height: 28px;
-  width: 250px;
+  width: 300px;
   float: right;
 }
 .checkout-container {
   padding-bottom: 80px;
 }
 .payment {
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
   padding: 20px 40px;
   height: 500px;
   margin-left: auto;
   max-width: 300px;
+  background-color: black;
 }
 .payment h3 {
   font-size: 20px;
   line-height: 28px;
   font-family: arial, sans-serif;
-  background: -webkit-linear-gradient(#198754, #ffffff);
+  background: -webkit-linear-gradient(#667eea, #764ba2, #6b8dd6, #8e37d7);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
@@ -233,6 +234,52 @@ form input,
 form label {
   cursor: pointer;
 }
+.card-holder-name {
+  font-size: 14px;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 6px;
+  border-radius: 6px;
+}
+.checkout-button {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  height: 40px;
+  text-align: center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 50px;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  background-image: linear-gradient(
+    to right,
+    #667eea,
+    #764ba2,
+    #6b8dd6,
+    #8e37d7
+  );
+  box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
+}
+
+.checkout-button:hover {
+  background-position: 100% 0;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+.modal-body {
+  color: black;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: center;
+  padding: 40px 0px;
+}
+
 @media (max-width: 1200px) {
   .App {
     padding: 38px 100px;

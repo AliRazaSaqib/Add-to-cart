@@ -16,9 +16,6 @@ function App() {
         <Route path="/checkout" exact element={<Checkout />} />
       </Routes>
     </Router>
-    // <>
-    //   <List />
-    // </>
   );
 }
 
