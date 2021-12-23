@@ -1,30 +1,28 @@
 /** @format */
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { React } from "react";
 import "./App.css";
 import List from "./components/addToList/List";
 import Login from "./components/Login";
-import Shop from "./components/addToList/Shop";
 
 function App() {
   return (
-    // <Router>
-    //   <Switch>
-    //     <div className="App">
-    //       <Login />
-    //     </div>
-    //     <Route
-    //       path="/addToList"
-    //       heading="Enter Text Here"
-    //       exact
-    //       component={List}
-    //     />
-    //   </Switch>
-    // </Router>
-    <>
-      <List />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" exact element={<Login />} />
+
+        <Route
+          path="/addToList"
+          heading="Enter Text Here"
+          exact
+          element={<List />}
+        />
+      </Routes>
+    </Router>
+    // <>
+    //   <List />
+    // </>
   );
 }
 

@@ -66,6 +66,9 @@
   padding: unset;
 }
 
+.fields a {
+  text-decoration: none;
+}
 /* // add to list page css */
 .add-list-container {
   padding: 20px;

@@ -3,7 +3,6 @@
 import React from "react";
 import "../App.css";
 import { useState } from "react";
-import List from "./addToList/List";
 import { Link } from "react-router-dom";
 
 export default function Login() {
@@ -17,7 +16,6 @@ export default function Login() {
     if (pass === "") {
       console.log("Password empty");
     } else {
-      <List />;
       console.log(
         "Your form was submitted, Now you can move on Add to list page"
       );
@@ -32,9 +30,9 @@ export default function Login() {
       {/*  Now start login-body */}
       <div className="login-body d-flex flex-column align-items-center justify-content-center">
         <div className="image">
-          <img src="/login.png" className="w-100" />
+          <img src="/login.png" alt="Not Found" className="w-100" />
         </div>
-        <form onSubmit={handleValidation}>
+        <form onSubmit={handleValidation} autocomplete="off">
           <div className="fields">
             <h2 className="d-flex align-items-center justify-content-center">
               Login
@@ -44,27 +42,29 @@ export default function Login() {
               type="text"
               placeholder="Enter Email"
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              autocomplete="off"
               value={userName}
               onChange={(event) => setUserName(event.target.value)}
             />
-            {userName.length == "" ? (
+            {userName.length === "" ? (
               <label className="alert">Your input was empty</label>
             ) : null}
             <input
               type="password"
               placeholder="Password"
+              autocomplete="off"
               value={pass}
               onChange={(event) => setPass(event.target.value)}
             />
-            {pass.length == "" ? (
+            {pass.length === "" ? (
               <label className="alert">Your input was empty</label>
             ) : null}
-            {/* <button type="submit" {<Link to="/addToList"/>}>Login</button> */}
-            {/* {userName.length == "" ? (
-              <Link to="/addToList" />
-            ) : (
-              <button type="submit">Login</button>
-            )} */}
+
+            {userName.length > 0 && pass.length > 0 ? (
+              <Link to="/addToList">
+                <button type="submit">Login</button>
+              </Link>
+            ) : null}
           </div>
         </form>
       </div>
