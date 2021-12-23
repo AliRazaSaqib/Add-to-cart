@@ -121,6 +121,8 @@
   padding: 20px 104px;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   margin-top: 32px;
+  overflow-x: auto;
+  width: 100%;
 }
 table {
   font-family: arial, sans-serif;
@@ -139,17 +141,97 @@ table tbody tr {
   font-weight: bold;
 }
 
-.view-added-items button {
+.view-added-items .delete {
   border: none;
   outline: none;
   font-size: 14px;
   background: black;
   color: whitesmoke;
 }
-.view-added-items button:hover {
+.view-added-items .delete:hover {
   transition: all 1s ease-in-out;
   transform: scale(1.1);
   color: red;
+}
+.checkout {
+  border-radius: 6px;
+  padding: 6px 10px;
+  margin-top: 20px;
+  font-size: 14px;
+  background: black;
+  color: whitesmoke;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  line-height: 28px;
+}
+.checkout:hover {
+  transform: scale(1.1);
+}
+
+/* // checkout page */
+.checkout-component {
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  padding: 20px 24px;
+}
+.checkout-component thead th {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  text-align: center;
+  border-bottom: 3px solid darkslategrey;
+  padding: 18px 0px;
+}
+.checkout-component tbody tr td {
+  border: none;
+  text-align: center;
+}
+.show-total {
+  border-radius: 6px;
+  padding: 6px 10px;
+  margin-top: 20px;
+  font-size: 14px;
+  background: black;
+  color: whitesmoke;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  line-height: 28px;
+  width: 250px;
+  float: right;
+}
+.checkout-container {
+  padding-bottom: 80px;
+}
+.payment {
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  padding: 20px 40px;
+  height: 500px;
+  margin-left: auto;
+  max-width: 300px;
+}
+.payment h3 {
+  font-size: 20px;
+  line-height: 28px;
+  font-family: arial, sans-serif;
+  background: -webkit-linear-gradient(#198754, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  font-weight: 700;
+}
+.add-payment-methods {
+  margin-top: 28px;
+}
+.add-payment-methods h6 {
+  color: whitesmoke;
+  font-family: arial, sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+}
+form input,
+form label {
+  cursor: pointer;
 }
 @media (max-width: 1200px) {
   .App {
@@ -163,10 +245,19 @@ table tbody tr {
   .app-header {
     font-size: 24px;
   }
+  .view-added-items {
+    padding: 20px 20px;
+  }
+  .show-total {
+    width: 150px;
+  }
 }
 
 @media (max-width: 576px) {
   .App {
     padding: 38px 12px;
+  }
+  .show-total {
+    width: 100px;
   }
 }

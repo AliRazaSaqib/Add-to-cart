@@ -3,6 +3,7 @@
 import { useState } from "react";
 import "../../App.css";
 import { v4 as uuidv4 } from "uuid";
+import { Link } from "react-router-dom";
 
 export default function List() {
   const [items, setSeletectItems] = useState([]);
@@ -39,6 +40,7 @@ export default function List() {
   const handleRemote = (el) => {
     let del = items.filter((elem) => elem.id != el.id);
     setSeletectItems(del);
+    console.log(el.id);
   };
 
   return (
@@ -64,26 +66,43 @@ export default function List() {
 
       {items.length > 0 ? (
         <div className="view-added-items">
+          <div className="app-header d-flex align-items-center justify-content-center">
+            Product List
+          </div>
           <table>
             <thead>
               <tr>
-                <th>Item Name</th>
-                <th>Price</th>
+                <th>Product Image</th>
+                <th>Product Name</th>
+                <th>Product Price</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               {items.map((el) => (
                 <tr key={el.id}>
+                  <td>
+                    <img
+                      src={el.image}
+                      style={{ height: "260px", width: "260px" }}
+                    />
+                  </td>
                   <td>{el.name}</td>
                   <td>{el.price}</td>
                   <td>
-                    <button onClick={() => handleRemote(el)}>Delete</button>
+                    <button className="delete" onClick={() => handleRemote(el)}>
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+          <div className="d-flex align-items-end justify-content-end">
+            <Link to="/checkout">
+              <button className="checkout">Checkout</button>
+            </Link>
+          </div>
         </div>
       ) : null}
     </div>
