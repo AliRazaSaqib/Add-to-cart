@@ -1,11 +1,33 @@
 /** @format */
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../App.css";
 import { ListContext } from "./ContextProvider";
 
 export default function Checkout() {
-  const [items, list] = useContext(ListContext);
+  const [items, list, cartTotal] = useContext(ListContext);
+
+  // hook for input fields
+  const [state, setState] = useState({
+    cardName: "",
+    cardNumber: "",
+  });
+
+  // for handleChange Evenet
+  const handleChange = (evt) => {
+    const value = evt.target.value;
+    setState({
+      ...state,
+      [evt.target.name]: value,
+    });
+  };
+
+  // for handlesubmit event
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Success");
+  };
+
   return (
     <div className="App">
       <div className="app-header d-flex align-items-center justify-content-center">
@@ -40,11 +62,11 @@ export default function Checkout() {
             })}
           </tbody>
         </table>
-        <div className="show-total">Show Total Amount Here</div>
+        {/* <div className="show-total">Total: {cartTotal}</div> */}
       </div>
 
       {/* payment section */}
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="payment">
           <h3>Payment Information</h3>
           <div className="add-payment-methods">
@@ -85,15 +107,23 @@ export default function Checkout() {
               id="cardHolderName"
               placeholder="Card Holder Name"
               className="card-holder-name mt-1"
+              required
+              name="cardName"
+              value={state.cardName}
+              onChange={handleChange}
             />
             <label htmlFor="cardnumber" className="mt-3">
-              Credit Card Name
+              Credit Card Number
             </label>
             <input
               type="text"
               id="cardnumber"
               placeholder="Card Number"
               className="card-holder-name mt-1"
+              required
+              name="cardNumber"
+              value={state.cardNumber}
+              onChange={handleChange}
             />
 
             <label htmlFor="date" className="mt-3">
@@ -120,35 +150,39 @@ export default function Checkout() {
               />
             </div>
           </div>
-          <button
-            type="button"
-            className="mt-4 checkout-button"
-            data-bs-toggle="modal"
-            data-bs-target="#successMessage"
-          >
-            Checkout
-          </button>
+
+          {state.cardName && state.cardNumber ? (
+            <button
+              type="submit"
+              className="mt-4 checkout-button"
+              data-bs-toggle="modal"
+              data-bs-target="#successMessage"
+            >
+              Checkout
+            </button>
+          ) : null}
         </div>
       </form>
       {/* Confermation PopUp */}
+
       <div
-        className="=modal fade"
+        className="modal fade"
         id="successMessage"
         tabindex="-1"
         aria-labelledby="successMessageLabel"
         aria-hidden="true"
       >
-        <div className="=modal-dialog">
-          <div className="=modal-content">
-            <div className="=modal-header">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
               <button
                 type="button"
-                className="=btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div className="=modal-body">Thank you for using our services</div>
+            <div className="modal-body">Thank you for using our services</div>
           </div>
         </div>
       </div>

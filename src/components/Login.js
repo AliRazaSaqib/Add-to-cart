@@ -60,11 +60,9 @@ export default function Login() {
               <label className="alert">Your input was empty</label>
             ) : null}
 
-            {userName.length > 0 && pass.length > 0 ? (
-              <Link to="/addToList">
-                <button type="submit">Login</button>
-              </Link>
-            ) : null}
+            <Link to="/addToList">
+              <button type="submit">Login</button>
+            </Link>
           </div>
         </form>
       </div>

@@ -1,12 +1,12 @@
 /** @format */
 
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 export const ListContext = createContext();
 export default function ContextProvider(props) {
   const [items, setSeletectItems] = useState([]);
-  console.log(items);
+  const [cartTotal, setCartTotal] = useState(0);
 
   // list of items
   const list = [
@@ -32,7 +32,9 @@ export default function ContextProvider(props) {
 
   return (
     <div>
-      <ListContext.Provider value={[list, items, setSeletectItems]}>
+      <ListContext.Provider
+        value={[list, items, setSeletectItems, cartTotal, setCartTotal]}
+      >
         {props.children}
       </ListContext.Provider>
     </div>

@@ -3,24 +3,36 @@
 import "../../App.css";
 import { Link } from "react-router-dom";
 import { ListContext } from "./ContextProvider";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 export default function List() {
   // get context api data
-  const [list, items, setSeletectItems] = useContext(ListContext);
-  console.log("items", items);
+  const [list, items, setSeletectItems, cartTotal, setCartTotal] =
+    useContext(ListContext);
+
+  // use for get total price of selected items
+  useEffect(() => {
+    total();
+  }, [items]);
+
+  const total = () => {
+    let totalVal = 0;
+    for (let i = 0; i < items.length; i++) {
+      totalVal += items[i].price;
+    }
+    setCartTotal(totalVal);
+  };
+  console.log("total", cartTotal);
 
   // add item to cart
   const handleSelected = (el) => {
     setSeletectItems([...items, el]);
-    console.log(el.id);
   };
 
   // remove item from card
   const handleRemote = (el) => {
     let del = items.filter((elem) => elem.id != el.id);
     setSeletectItems(del);
-    console.log(el.id);
   };
 
   return (
